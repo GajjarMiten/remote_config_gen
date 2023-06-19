@@ -1,0 +1,8 @@
+name: remote_config_gen_annotations
+
+description: The Flutter code generator for your assets, fonts, colors, … — Get rid of all String-based APIs.
+version: 0.0.1
+publish_to: none
+
+environment:
+    sdk: ">=2.19.6 <3.0.0"

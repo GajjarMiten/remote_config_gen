@@ -1,0 +1,87 @@
+# The name of the project (required) is used for displaying purposes within IO environments and IDEs.
+name: remote_config_gen
+
+# A list of paths to local packages that are included in the Melos workspace. Each entry can be a specific path or a glob pattern.
+packages:
+  - "packages/**"
+
+ide:
+  vscode: true
+
+command:
+  bootstrap:
+    usePubspecOverrides: true
+
+  clean:
+    hooks:
+      post:
+        run: |
+          melos exec -c 6 -- flutter clean
+        description: flutter clean
+
+scripts:
+  get:
+    run: |
+      melos exec -c 6 -- flutter pub get
+    description: flutter pub get
+
+  upgrade:
+    run: melos exec -c 6 -- flutter pub upgrade
+    description: flutter pub upgrade
+
+  analyze:
+    run: melos exec -c 6 -- flutter analyze
+    description: flutter analyze
+
+  format:
+    run: dart format --set-exit-if-changed .
+    description: dart format --set-exit-if-changed .
+
+  build:
+    exec: flutter build apk
+    packageFilters:
+      scope: example
+    description: flutter build apk
+
+  gen:build_runner:
+    exec: dart pub run build_runner build --delete-conflicting-outputs
+    packageFilters:
+      ignore:
+        - example
+        - example_resources
+      dependsOn: build_runner
+    description: dart pub run build_runner build --delete-conflicting-outputs
+
+  gen:examples:command:
+    exec: dart ../../packages/command/bin/flutter_gen_command.dart --config pubspec.yaml
+    packageFilters:
+      scope: 
+        - example
+        - example_resources
+    description: dart ../../packages/command/bin/flutter_gen_command.dart --config pubspec.yaml
+
+  gen:examples:build_runner:
+    exec: flutter pub run build_runner build --delete-conflicting-outputs
+    packageFilters:
+      scope: 
+        - example
+        - example_resources
+    description: flutter pub run build_runner build --delete-conflicting-outputs
+
+  test:
+    run: melos test:dart --no-select
+    description: dart test
+
+  test:dart:
+    run: dart test
+    exec:
+      failFast: true
+    packageFilters:
+      flutter: false
+      dependsOn: test
+    description: dart test
+
+  coverage:
+    run: |
+      bash ./scripts/coverage.sh packages/core
+    description: bash ./scripts/coverage.sh packages/core

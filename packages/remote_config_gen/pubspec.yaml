@@ -1,0 +1,19 @@
+name: remote_config_gen
+
+description: The Flutter code generator for Firebase Remote Config.
+version: 1.0.0
+publish_to: none
+
+environment:
+    sdk: ">=2.19.6 <3.0.0"
+
+dependencies:
+    build:
+    source_gen:
+    remote_config_gen_annotations:
+        path: ../remote_config_gen_annotations/
+
+dev_dependencies:
+    build_runner:
+    build_test:
+    test: ^1.0.0

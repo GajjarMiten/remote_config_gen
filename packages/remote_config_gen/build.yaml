@@ -1,0 +1,18 @@
+targets:
+    $default:
+        builders:
+            remote_config_gen|annotations:
+                enabled: true
+
+builders:
+    remote_config_gen:
+        target: ":generators"
+        # 1
+        import: "package:remote_config_gen/builder.dart"
+        # 2
+        builder_factories: ["generateRemoteConfigValue"]
+        # 3
+        build_extensions: { ".dart": [".g.dart"] }
+        auto_apply: dependents
+        build_to: cache
+        applies_builders: ["source_gen|combining_builder"]
