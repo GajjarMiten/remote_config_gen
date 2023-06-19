@@ -14,6 +14,7 @@ dependencies:
         path: ../remote_config_gen_annotations/
 
 dev_dependencies:
+    flutter_lints: '>=2.0.1 <3.0.0'
     build_runner:
     build_test:
     test: ^1.0.0
