@@ -1,1 +1,1 @@
-const String DEFAULT_CLASS_NAME = "RemoteValues";
+const String defaultClassName = 'RemoteValues';

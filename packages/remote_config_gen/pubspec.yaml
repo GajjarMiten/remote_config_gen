@@ -10,6 +10,7 @@ environment:
 dependencies:
     build:
     source_gen:
+    analyzer:
     remote_config_gen_annotations:
         path: ../remote_config_gen_annotations/
 

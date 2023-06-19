@@ -1,11 +1,11 @@
+import 'package:remote_config_gen/src/core/constants.dart';
 import 'package:remote_config_gen/src/model_visitor.dart';
 import 'package:source_gen/source_gen.dart';
 
-import 'constants.dart';
 
 String getClassName(ConstantReader annotation) {
   return annotation.objectValue.getField('className')?.toStringValue() ??
-      DEFAULT_CLASS_NAME;
+      defaultClassName;
 }
 
 String getVariableTamplate(FieldMeta meta) {
